@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/favicon.ico">
+
+    <title>ToDo List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .padd-top{
+        padding-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body  ng-app="myApp" ng-controller="customersCtrl">
+
+    <div class="container padd-top">
+
+      <div class="row ">
+        <div class="col-lg-3">
+          <form >
+            ToDo description:<br/>
+            <input type="text" ng-model="toDoDescription"><br><br>
+            <button ng-click="addToDo()" class="btn">Add ToDo</button>
+          </form>
+
+          <form ng-show="showEditToDoForm" >
+            Edit ToDo description:<br/>
+            <input type="text" ng-model="toDoEdited.description"><br><br>
+            <button ng-click="editToDoDescription()" class="btn">Save</button>
+          </form>
+
+        </div>
+        <div class="col-lg-9">
+
+          <div class="row"  ng-repeat="t in todos"
+                ng-class="{ 'alert':true, 'alert-success' : t.done==true, 'alert-danger' : t.done==false}"
+              >
+            <a  class="col-lg-8"  href="#"
+                class="alert-link"
+                ng-click="activateEditToDoForm(t)"
+            >{{t.description}}</a>
+
+            <button class="col-lg-2 btn" ng-click="makeChecked(t)" >{{printDone(t)}}</button>
+            <div class="col-lg-1"></div>
+            <button class="col-lg-1 btn" ng-click="removeToDo(t)" >X</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  
+
+  </body>
+</html>
